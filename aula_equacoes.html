@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equações do 1º Grau</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#FF4E8B;    --pink-l:#FFE0EC;
+  --orange:#FF8A3D;  --orange-l:#FFEBD9;
+  --yellow:#FFCB2E;  --yellow-l:#FFF6D6;
+  --lime:#8BD450;    --lime-l:#EDF9DE;
+  --teal:#1BC5BD;    --teal-l:#D6F7F4;
+  --blue:#3D8BFF;    --blue-l:#DCEBFF;
+  --purple:#9B5DE5;  --purple-l:#EFE3FB;
+  --dark:#2B2D42;
+  --white:#FFFFFF;
+  --cream:#FFF9F0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--dark);font-size:16px;line-height:1.65}
+h1,h2,h3,h4{font-family:'Fredoka',sans-serif;font-weight:600}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:300;background:var(--white);
+  padding:10px 14px;display:flex;flex-wrap:wrap;gap:7px;justify-content:center;
+  box-shadow:0 3px 14px rgba(0,0,0,.12)}
+.np{padding:7px 14px;border-radius:100px;background:var(--cream);
+  font-family:'Fredoka',sans-serif;font-weight:500;font-size:.82rem;
+  border:2px solid transparent;cursor:pointer;transition:.2s;color:var(--dark)}
+.np:hover,.np.on{background:var(--pink);color:#fff;border-color:var(--pink);transform:scale(1.05)}
+.np.n2:hover,.np.n2.on{background:var(--purple);border-color:var(--purple)}
+.np.nq:hover,.np.nq.on{background:var(--teal);border-color:var(--teal)}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#FF4E8B 0%,#FF8A3D 45%,#FFCB2E 100%);
+  padding:70px 20px 60px;text-align:center;position:relative;overflow:hidden}
+.hero .blob{position:absolute;border-radius:50%;opacity:.18;background:#fff}
+.hero h1{font-size:clamp(2.5rem,7vw,4.8rem);color:#fff;font-weight:700;
+  text-shadow:3px 3px 0 rgba(0,0,0,.12);position:relative;z-index:1;line-height:1}
+.hero p{color:#fff;font-size:1.1rem;font-weight:700;margin-top:14px;position:relative;z-index:1;opacity:.95}
+.hero .badge{display:inline-block;background:rgba(255,255,255,.25);backdrop-filter:blur(4px);
+  color:#fff;font-weight:800;padding:6px 18px;border-radius:100px;margin-top:18px;
+  font-size:.85rem;position:relative;z-index:1;border:2px solid rgba(255,255,255,.4)}
+.hero-eq{position:relative;z-index:1;margin:22px auto 0;background:rgba(255,255,255,.95);
+  display:inline-block;padding:14px 32px;border-radius:18px;
+  font-family:'Fredoka';font-size:1.8rem;color:var(--pink);font-weight:600;
+  box-shadow:0 8px 0 rgba(0,0,0,.1)}
+
+/* ── PART BANNER ── */
+.part-banner{padding:44px 20px;text-align:center;position:relative;overflow:hidden}
+.pb1{background:linear-gradient(120deg,var(--pink),var(--orange))}
+.pb2{background:linear-gradient(120deg,var(--purple),var(--blue))}
+.part-banner .pnum{font-family:'Fredoka';font-size:3.5rem;color:rgba(255,255,255,.35);font-weight:700;line-height:1}
+.part-banner h2{color:#fff;font-size:clamp(1.6rem,4.5vw,2.5rem);font-weight:700;text-shadow:2px 2px 0 rgba(0,0,0,.12)}
+.part-banner p{color:#fff;font-weight:700;opacity:.92;margin-top:6px}
+
+/* ── WRAP ── */
+.w{max-width:880px;margin:0 auto;padding:0 20px}
+.sec{padding:44px 0}
+
+/* ── SECTION TITLE ── */
+.st{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.st .emoji{font-size:2rem;flex-shrink:0}
+.st h3{font-size:clamp(1.4rem,3.5vw,2rem);line-height:1.1}
+
+/* ── DEF BOX ── */
+.def{border-radius:18px;padding:22px 26px;margin:18px 0;color:#fff;position:relative;overflow:hidden}
+.def::after{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:rgba(255,255,255,.12);border-radius:50%}
+.def-pink{background:linear-gradient(135deg,var(--pink),#FF6FA0)}
+.def-purple{background:linear-gradient(135deg,var(--purple),#B47AF0)}
+.def-blue{background:linear-gradient(135deg,var(--blue),#6BA5FF)}
+.def-teal{background:linear-gradient(135deg,var(--teal),#3DD6CE)}
+.def .lbl{font-family:'Fredoka';font-size:.8rem;letter-spacing:2px;text-transform:uppercase;opacity:.9;margin-bottom:6px}
+.def p{font-size:1.02rem;line-height:1.7;position:relative;z-index:1}
+
+/* ── CARD ── */
+.card{background:#fff;border-radius:18px;padding:22px 24px;margin-bottom:16px;
+  box-shadow:0 4px 0 rgba(0,0,0,.06),0 6px 20px rgba(0,0,0,.05);transition:.2s}
+.card:hover{transform:translateY(-3px)}
+.card h4{font-size:1.1rem;margin-bottom:8px}
+.card p{font-size:.95rem}
+.bt-pink{border-top:6px solid var(--pink)}
+.bt-orange{border-top:6px solid var(--orange)}
+.bt-yellow{border-top:6px solid var(--yellow)}
+.bt-lime{border-top:6px solid var(--lime)}
+.bt-teal{border-top:6px solid var(--teal)}
+.bt-blue{border-top:6px solid var(--blue)}
+.bt-purple{border-top:6px solid var(--purple)}
+
+/* ── MEMBER DIAGRAM (equation anatomy) ── */
+.anatomy{background:#fff;border-radius:20px;padding:30px 20px;margin:20px 0;
+  box-shadow:0 4px 20px rgba(0,0,0,.07);text-align:center}
+.eq-big{font-family:'Fredoka';font-size:clamp(1.8rem,6vw,3rem);font-weight:600;display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.mem{padding:8px 18px;border-radius:14px;position:relative}
+.mem1{background:var(--pink-l);color:var(--pink)}
+.mem2{background:var(--blue-l);color:var(--blue)}
+.equals{color:var(--dark);font-weight:700}
+.mem-lbl{display:block;font-family:'Nunito';font-size:.7rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-top:6px}
+.mem1 .mem-lbl{color:var(--pink)}
+.mem2 .mem-lbl{color:var(--blue)}
+
+/* ── BALANCE SCALE ── */
+.balance{display:flex;flex-direction:column;align-items:center;margin:24px 0;background:linear-gradient(180deg,var(--teal-l),#fff);border-radius:20px;padding:24px}
+.balance .cap{margin-top:12px;font-size:.86rem;color:var(--dark);text-align:center;max-width:460px;font-weight:600}
+
+/* ── STEP FLOW ── */
+.flow{counter-reset:step;margin:20px 0}
+.flow-step{display:flex;gap:16px;margin-bottom:6px;position:relative}
+.flow-num{width:46px;height:46px;border-radius:14px;flex-shrink:0;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fredoka';font-size:1.4rem;font-weight:600;box-shadow:0 4px 0 rgba(0,0,0,.1)}
+.flow-body{flex:1;background:#fff;border-radius:14px;padding:14px 18px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.06)}
+.flow-body h4{font-size:1.02rem;margin-bottom:5px}
+.flow-body p{font-size:.92rem}
+.flow-eq{display:inline-block;background:var(--yellow-l);color:#B8860B;font-family:'Fredoka';
+  font-size:1.15rem;padding:5px 14px;border-radius:10px;margin-top:8px;font-weight:600}
+.flow-connector{position:absolute;left:22px;top:46px;bottom:-6px;width:3px;background:repeating-linear-gradient(180deg,#ddd 0 6px,transparent 6px 12px)}
+
+/* ── STACKED FRACTION (numerador em cima, barra, denominador embaixo) ── */
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;
+  margin:0 4px;line-height:1.05;position:relative;top:-1px}
+.frac .fnum{padding:0 8px 2px}
+.frac .fden{padding:2px 8px 0;border-top:3px solid currentColor}
+.frac.big{font-size:1em}
+.fb .frac{font-size:.9em}
+/* fraction inside colored equation boxes inherits color */
+.qeq .frac .fden,.flow-eq .frac .fden,.dmath .frac .fden,.calc-eq .frac .fden{border-top-width:3px}
+
+/* ── DISTRIBUTION BREAKDOWN (how the MMC multiplication works) ── */
+.distrib{background:#fff;border:3px solid var(--blue);border-radius:20px;padding:24px;margin:20px 0;box-shadow:0 6px 22px rgba(61,139,255,.15)}
+.distrib .dtitle{font-family:'Fredoka';font-size:1.15rem;color:var(--blue);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.distrib .dsub{font-size:.9rem;font-weight:600;color:#777;margin-bottom:18px}
+.dstep{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;padding-bottom:14px;border-bottom:1px dashed #dbe8ff}
+.dstep:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.dbadge{width:30px;height:30px;border-radius:9px;background:var(--blue-l);color:var(--blue);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-family:'Fredoka';font-weight:600;font-size:.95rem}
+.dbody{flex:1}
+.dbody .dlabel{font-weight:800;font-size:.92rem;margin-bottom:6px;color:var(--dark)}
+.dmath{font-family:'Fredoka';font-size:1.15rem;font-weight:600;background:var(--cream);
+  border-radius:10px;padding:8px 14px;margin-top:4px;line-height:1.9;color:var(--dark)}
+.hl-cancel{background:var(--pink-l);color:var(--pink);padding:1px 6px;border-radius:6px;text-decoration:line-through}
+.hl-keep{background:var(--lime-l);color:#4A7A1F;padding:1px 6px;border-radius:6px}
+.hl-mmc{background:var(--blue-l);color:var(--blue);padding:1px 6px;border-radius:6px;font-weight:700}
+.dresult{background:var(--lime-l);border-radius:12px;padding:12px 16px;margin-top:8px;
+  font-family:'Fredoka';font-size:1.2rem;color:#4A7A1F;font-weight:600;text-align:center}
+.dcancel-visual{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px}
+.dcancel-visual .num{padding:0 4px}
+.dcancel-visual .den{border-top:2px solid currentColor;padding:0 4px}
+
+/* worked example box */
+.worked{background:linear-gradient(135deg,var(--yellow-l),#fff);border:3px dashed var(--yellow);border-radius:18px;padding:22px 24px;margin:20px 0}
+.worked .wtitle{font-family:'Fredoka';font-size:1.15rem;color:#B8860B;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.calc-line{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.1);font-size:1.05rem}
+.calc-line:last-child{border-bottom:none}
+.calc-eq{font-family:'Fredoka';font-size:1.25rem;font-weight:600;flex:1}
+.calc-note{font-size:.8rem;color:var(--pink);font-weight:800;background:var(--pink-l);padding:3px 10px;border-radius:100px;white-space:nowrap}
+.calc-final{background:var(--lime-l);border-radius:12px;padding:12px 16px;margin-top:12px;font-family:'Fredoka';font-size:1.3rem;color:#4A7A1F;font-weight:600;text-align:center}
+
+/* ── TIP ── */
+.tip{display:flex;gap:14px;padding:16px 20px;border-radius:16px;margin:16px 0;align-items:flex-start;font-size:.95rem;line-height:1.6;font-weight:600}
+.tip .i{font-size:1.6rem;flex-shrink:0}
+.tip-warn{background:var(--orange-l);border-left:6px solid var(--orange)}
+.tip-idea{background:var(--blue-l);border-left:6px solid var(--blue)}
+.tip-star{background:var(--lime-l);border-left:6px solid var(--lime)}
+.tip-heart{background:var(--pink-l);border-left:6px solid var(--pink)}
+
+/* ── INVERSE TABLE ── */
+.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+.inv-card{background:#fff;border-radius:16px;padding:16px;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.06)}
+.inv-op{font-family:'Fredoka';font-size:2rem;font-weight:600}
+.inv-arrow{font-size:1.4rem;margin:4px 0}
+.inv-card small{display:block;font-size:.8rem;color:#888;font-weight:700;margin-top:4px}
+
+/* ── QUIZ ── */
+.quiz-wrap{padding:50px 20px 80px}
+.quiz-wrap.q1bg{background:linear-gradient(180deg,var(--pink-l),var(--cream))}
+.quiz-wrap.q2bg{background:linear-gradient(180deg,var(--purple-l),var(--cream))}
+.qhead{text-align:center;margin-bottom:32px}
+.qhead .qemoji{font-size:3.5rem}
+.qhead h2{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:700;margin-top:6px}
+.qhead.qc1 h2{color:var(--pink)}
+.qhead.qc2 h2{color:var(--purple)}
+.qhead p{font-weight:700;color:#888;margin-top:4px}
+
+.pbar-out{max-width:560px;margin:0 auto 6px;background:#fff;border-radius:100px;height:14px;padding:3px;box-shadow:inset 0 1px 4px rgba(0,0,0,.1)}
+.pbar-in{height:100%;border-radius:100px;transition:width .5s ease;width:0%}
+.q1bg .pbar-in{background:linear-gradient(90deg,var(--pink),var(--orange))}
+.q2bg .pbar-in{background:linear-gradient(90deg,var(--purple),var(--blue))}
+.plabel{text-align:center;font-weight:800;color:#aaa;font-size:.82rem;margin-bottom:24px}
+
+.qcard{max-width:640px;margin:0 auto;background:#fff;border-radius:24px;padding:30px;
+  box-shadow:0 10px 40px rgba(0,0,0,.1);display:none;animation:pop .4s}
+.qcard.on{display:block}
+@keyframes pop{from{opacity:0;transform:scale(.95) translateY(15px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.qtag{display:inline-block;font-family:'Fredoka';font-size:.75rem;letter-spacing:1px;
+  text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:14px;font-weight:500}
+.q1bg .qtag{background:var(--pink-l);color:var(--pink)}
+.q2bg .qtag{background:var(--purple-l);color:var(--purple)}
+.qeq{text-align:center;font-family:'Fredoka';font-size:clamp(1.6rem,5vw,2.4rem);font-weight:600;
+  padding:18px;border-radius:16px;margin-bottom:16px}
+.q1bg .qeq{background:var(--yellow-l);color:#B8860B}
+.q2bg .qeq{background:var(--teal-l);color:#0E8C86}
+.qtext{font-size:1rem;font-weight:700;text-align:center;margin-bottom:20px;color:#555}
+
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.opt{background:var(--cream);border:2.5px solid #eee;border-radius:14px;padding:16px;
+  font-family:'Fredoka';font-size:1.3rem;font-weight:600;cursor:pointer;transition:.2s;
+  display:flex;align-items:center;gap:12px;color:var(--dark)}
+.opt:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.1)}
+.q1bg .opt:hover:not(:disabled){border-color:var(--pink)}
+.q2bg .opt:hover:not(:disabled){border-color:var(--purple)}
+.opt.cor{background:var(--lime-l);border-color:var(--lime);color:#4A7A1F}
+.opt.err{background:var(--pink-l);border-color:var(--pink);color:var(--pink)}
+.opt:disabled{cursor:default}
+.olt{width:30px;height:30px;border-radius:9px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.1);
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+
+.fb{margin-top:16px;padding:14px 18px;border-radius:14px;font-size:.92rem;font-weight:600;line-height:1.6;display:none}
+.fb.on{display:block;animation:pop .3s}
+.fb.ok{background:var(--lime-l);border-left:5px solid var(--lime);color:#3B6317}
+.fb.no{background:var(--pink-l);border-left:5px solid var(--pink);color:#B02E5A}
+
+.nxt{display:none;margin:18px auto 0;padding:13px 34px;border:none;border-radius:100px;
+  font-family:'Fredoka';font-size:1.05rem;font-weight:600;color:#fff;cursor:pointer;transition:.2s}
+.nxt.on{display:block}
+.q1bg .nxt{background:var(--pink)}
+.q2bg .nxt{background:var(--purple)}
+.nxt:hover{transform:scale(1.05)}
+
+.res{display:none;max-width:520px;margin:0 auto;background:#fff;border-radius:28px;
+  padding:44px 30px;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.12);animation:pop .5s}
+.res.on{display:block}
+.res .re{font-size:5rem}
+.res .rs{font-family:'Fredoka';font-size:4rem;font-weight:700}
+.q1bg .res .rs{color:var(--pink)}
+.q2bg .res .rs{color:var(--purple)}
+.res .rm{font-weight:700;color:#777;margin:8px 0 24px;line-height:1.6}
+.rbtn{padding:13px 32px;border:none;border-radius:100px;font-family:'Fredoka';font-size:1.05rem;
+  font-weight:600;color:#fff;cursor:pointer;transition:.2s}
+.q1bg .rbtn{background:linear-gradient(135deg,var(--pink),var(--orange))}
+.q2bg .rbtn{background:linear-gradient(135deg,var(--purple),var(--blue))}
+.rbtn:hover{transform:scale(1.05)}
+
+footer{text-align:center;padding:30px;font-weight:700;color:#aaa;font-size:.85rem}
+
+@media(max-width:600px){
+  .w{padding:0 15px}.sec{padding:32px 0}
+  .opts{grid-template-columns:1fr}
+  .qcard{padding:20px}
+  .inv-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <button class="np on" onclick="goto('p1',this)">🎯 Parte 1</button>
+  <button class="np" onclick="goto('s1a',this)">O que é?</button>
+  <button class="np" onclick="goto('s1b',this)">Como resolver</button>
+  <button class="np" onclick="goto('s1c',this)">Método prático</button>
+  <button class="np nq" onclick="goto('quiz1',this)">🎮 Quiz 1</button>
+  <button class="np n2" onclick="goto('p2',this)">🧩 Parte 2</button>
+  <button class="np n2" onclick="goto('s2a',this)">Fracionária</button>
+  <button class="np nq" onclick="goto('quiz2',this)">🎮 Quiz 2</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="blob" style="width:200px;height:200px;top:-40px;left:-30px"></div>
+  <div class="blob" style="width:150px;height:150px;bottom:-30px;right:10%"></div>
+  <div class="blob" style="width:90px;height:90px;top:40px;right:20%"></div>
+  <h1>Equações do 1º Grau</h1>
+  <p>Com uma incógnita ✏️ Matemática do 8º Ano</p>
+  <div class="hero-eq">3x − 5 = 10 &nbsp;➜&nbsp; x = 5</div>
+  <div class="badge">🎯 2 Conteúdos · 🎮 2 Quizzes · 10 Desafios</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PARTE 1 — EQUAÇÃO DO 1º GRAU
+═══════════════════════════════════════════════════ -->
+<div class="part-banner pb1" id="p1">
+  <div class="pnum">PARTE 1</div>
+  <h2>🎯 Equação do 1º Grau com uma Incógnita</h2>
+  <p>Vamos descobrir o valor escondido!</p>
+</div>
+
+<!-- ── S1A: O QUE É ── -->
+<div class="sec" id="s1a">
+<div class="w">
+  <div class="st"><span class="emoji">🤔</span><h3 style="color:var(--pink)">O que é uma equação?</h3></div>
+
+  <div class="def def-pink">
+    <div class="lbl">📌 Definição</div>
+    <p>Uma <strong>equação do 1º grau com uma incógnita</strong> é uma sentença matemática que tem uma <strong>igualdade (=)</strong> e uma <strong>letra desconhecida</strong> (a incógnita), que geralmente chamamos de <strong>x</strong>. Nosso objetivo é descobrir o valor dessa letra!</p>
+  </div>
+
+  <div class="tip tip-idea">
+    <span class="i">⚖️</span>
+    <span>A palavra "equação" vem do latim e significa <strong>igualdade / equilíbrio</strong>. O sinal de igual (=) funciona como uma <strong>balança</strong>: os dois lados precisam ter sempre o mesmo "peso"!</span>
+  </div>
+
+  <h4 style="font-family:'Fredoka';font-size:1.3rem;margin:24px 0 12px;color:var(--dark)">🔍 As partes de uma equação</h4>
+
+  <div class="anatomy">
+    <div class="eq-big">
+      <span class="mem mem1">3x − 5<span class="mem-lbl">1º membro</span></span>
+      <span class="equals">=</span>
+      <span class="mem mem2">10<span class="mem-lbl">2º membro</span></span>
+    </div>
+    <p style="margin-top:20px;font-weight:700;color:#777;font-size:.92rem">Tudo que está <strong style="color:var(--pink)">antes do =</strong> é o 1º membro · Tudo <strong style="color:var(--blue)">depois do =</strong> é o 2º membro</p>
+  </div>
+
+  <div class="inv-grid" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="inv-card bt-yellow" style="border-top:6px solid var(--yellow)">
+      <div style="font-size:1.8rem">🔤</div>
+      <h4 style="color:#B8860B">Incógnita</h4>
+      <p style="font-size:.85rem;font-weight:700">A letra desconhecida (x, y, b...)</p>
+    </div>
+    <div class="inv-card bt-lime" style="border-top:6px solid var(--lime)">
+      <div style="font-size:1.8rem">🟰</div>
+      <h4 style="color:#4A7A1F">Igualdade</h4>
+      <p style="font-size:.85rem;font-weight:700">O sinal de = que equilibra os lados</p>
+    </div>
+    <div class="inv-card bt-teal" style="border-top:6px solid var(--teal)">
+      <div style="font-size:1.8rem">🎯</div>
+      <h4 style="color:#0E8C86">Raiz / Solução</h4>
+      <p style="font-size:.85rem;font-weight:700">O valor de x que resolve tudo!</p>
+    </div>
+  </div>
+
+  <h4 style="font-family:'Fredoka';font-size:1.3rem;margin:24px 0 12px;color:var(--dark)">👀 Exemplos de equações</h4>
+  <div class="inv-grid">
+    <div class="card bt-pink" style="text-align:center">
+      <div style="font-family:'Fredoka';font-size:1.5rem;color:var(--pink)">4y − 5 = 19</div>
+      <small style="color:#888;font-weight:700">a incógnita é o <strong>y</strong></small>
+    </div>
+    <div class="card bt-blue" style="text-align:center">
+      <div style="font-family:'Fredoka';font-size:1.5rem;color:var(--blue)">7b + 5 = 28 + b</div>
+      <small style="color:#888;font-weight:700">a incógnita é o <strong>b</strong></small>
+    </div>
+  </div>
+
+  <div class="tip tip-warn">
+    <span class="i">⚠️</span>
+    <span><strong>Atenção!</strong> Nem toda expressão é equação. Por exemplo, "25k" ou "12x − 19" <strong>não são equações</strong>, porque não têm o sinal de igual (=). Sem igualdade, não é equação!</span>
+  </div>
+</div>
+</div>
+
+<!-- ── S1B: COMO RESOLVER ── -->
+<div class="sec" id="s1b" style="background:linear-gradient(180deg,#fff,var(--cream))">
+<div class="w">
+  <div class="st"><span class="emoji">⚖️</span><h3 style="color:var(--orange)">Como resolver: a ideia da balança</h3></div>
+
+  <div class="def def-blue">
+    <div class="lbl">💡 A grande ideia</div>
+    <p>Resolver uma equação é como manter uma <strong>balança em equilíbrio</strong>. Tudo que você faz de um lado, precisa fazer <strong>igualzinho do outro lado</strong>. Assim os dois membros continuam iguais!</p>
+  </div>
+
+  <div class="balance">
+    <svg width="300" height="180" viewBox="0 0 300 180">
+      <!-- base -->
+      <rect x="140" y="150" width="20" height="20" rx="3" fill="#8B6F47"/>
+      <polygon points="115,170 185,170 195,178 105,178" fill="#8B6F47"/>
+      <!-- pole -->
+      <rect x="147" y="55" width="6" height="100" fill="#B8860B"/>
+      <!-- beam -->
+      <rect x="55" y="52" width="190" height="7" rx="3.5" fill="#B8860B"/>
+      <circle cx="150" cy="55" r="8" fill="#FFCB2E" stroke="#B8860B" stroke-width="2"/>
+      <!-- left pan -->
+      <line x1="70" y1="55" x2="70" y2="90" stroke="#999" stroke-width="1.5"/>
+      <path d="M45,90 Q70,115 95,90" fill="var(--pink-l)" stroke="var(--pink)" stroke-width="2.5"/>
+      <text x="70" y="85" text-anchor="middle" font-family="Fredoka" font-size="16" font-weight="600" fill="var(--pink)">3x−5</text>
+      <!-- right pan -->
+      <line x1="230" y1="55" x2="230" y2="90" stroke="#999" stroke-width="1.5"/>
+      <path d="M205,90 Q230,115 255,90" fill="var(--blue-l)" stroke="var(--blue)" stroke-width="2.5"/>
+      <text x="230" y="85" text-anchor="middle" font-family="Fredoka" font-size="16" font-weight="600" fill="var(--blue)">10</text>
+      <!-- equals -->
+      <text x="150" y="140" text-anchor="middle" font-family="Fredoka" font-size="22" font-weight="600" fill="var(--dark)">=</text>
+    </svg>
+    <p class="cap">Os dois pratos estão equilibrados! 3x − 5 pesa o mesmo que 10. Se eu tirar 5 de um lado, tenho que tirar 5 do outro também.</p>
+  </div>
+
+  <h4 style="font-family:'Fredoka';font-size:1.3rem;margin:24px 0 12px;color:var(--dark)">🔄 As operações inversas (a chave de tudo!)</h4>
+  <p style="font-weight:600;margin-bottom:14px">Para "passar" um número de um lado para o outro, usamos a <strong>operação contrária</strong>. Veja o par de cada operação:</p>
+
+  <div class="inv-grid">
+    <div class="inv-card">
+      <div class="inv-op" style="color:var(--pink)">+ ➜ −</div>
+      <div class="inv-arrow">🔄</div>
+      <p style="font-weight:700">Se está <strong>somando</strong>, passa <strong>subtraindo</strong></p>
+      <small>+5 vira −5 do outro lado</small>
+    </div>
+    <div class="inv-card">
+      <div class="inv-op" style="color:var(--blue)">− ➜ +</div>
+      <div class="inv-arrow">🔄</div>
+      <p style="font-weight:700">Se está <strong>subtraindo</strong>, passa <strong>somando</strong></p>
+      <small>−5 vira +5 do outro lado</small>
+    </div>
+    <div class="inv-card">
+      <div class="inv-op" style="color:var(--lime)">× ➜ ÷</div>
+      <div class="inv-arrow">🔄</div>
+      <p style="font-weight:700">Se está <strong>multiplicando</strong>, passa <strong>dividindo</strong></p>
+      <small>3x vira ÷3 do outro lado</small>
+    </div>
+    <div class="inv-card">
+      <div class="inv-op" style="color:var(--purple)">÷ ➜ ×</div>
+      <div class="inv-arrow">🔄</div>
+      <p style="font-weight:700">Se está <strong>dividindo</strong>, passa <strong>multiplicando</strong></p>
+      <small>x÷2 vira ×2 do outro lado</small>
+    </div>
+  </div>
+
+  <h4 style="font-family:'Fredoka';font-size:1.3rem;margin:28px 0 14px;color:var(--dark)">📝 Resolvendo passo a passo: o problema do Leonardo</h4>
+  <div class="tip tip-heart">
+    <span class="i">💬</span>
+    <span>"Pensei em um número. Multipliquei por 3 e subtraí 5, obtendo 10. Em que número pensei?" → A equação é <strong>3x − 5 = 10</strong></span>
+  </div>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num" style="background:var(--pink)">1</div>
+      <div class="flow-body">
+        <h4>Escreva a equação</h4>
+        <p>Começamos com o número (5) que está sozinho no 1º membro, sendo subtraído.</p>
+        <span class="flow-eq">3x − 5 = 10</span>
+      </div>
+      <div class="flow-connector"></div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num" style="background:var(--orange)">2</div>
+      <div class="flow-body">
+        <h4>Passe o −5 para o outro lado (vira +5)</h4>
+        <p>O −5 estava subtraindo. Usando a operação inversa, ele passa <strong>somando</strong>: +5.</p>
+        <span class="flow-eq">3x = 10 + 5 &nbsp;→&nbsp; 3x = 15</span>
+      </div>
+      <div class="flow-connector"></div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num" style="background:var(--lime)">3</div>
+      <div class="flow-body">
+        <h4>Passe o 3 (que multiplica) dividindo</h4>
+        <p>O 3 está multiplicando o x. Ele passa para o outro lado <strong>dividindo</strong>.</p>
+        <span class="flow-eq">x = 15 ÷ 3</span>
+      </div>
+      <div class="flow-connector"></div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num" style="background:var(--teal)">✓</div>
+      <div class="flow-body">
+        <h4>Achamos a resposta! 🎉</h4>
+        <p>O número em que Leonardo pensou foi:</p>
+        <span class="flow-eq" style="background:var(--lime-l);color:#4A7A1F">x = 5</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip tip-star">
+    <span class="i">✅</span>
+    <span><strong>Prova real!</strong> Vamos conferir: 3 × <strong>5</strong> − 5 = 15 − 5 = <strong>10</strong> ✓. Deu certo! Sempre confira substituindo o valor encontrado na equação original.</span>
+  </div>
+</div>
+</div>
+
+<!-- ── S1C: MÉTODO PRÁTICO ── -->
+<div class="sec" id="s1c">
+<div class="w">
+  <div class="st"><span class="emoji">⚡</span><h3 style="color:var(--purple)">Método prático (com x dos dois lados)</h3></div>
+
+  <div class="def def-purple">
+    <div class="lbl">🎯 Quando usar</div>
+    <p>Às vezes a incógnita <strong>x aparece nos dois membros</strong> da equação (ex: 7x + 9 = 2x + 5). Nesse caso, precisamos <strong>juntar todos os x de um lado</strong> e todos os números do outro. É só usar operação inversa!</p>
+  </div>
+
+  <div class="worked">
+    <div class="wtitle">⚡ Exemplo: Resolva 7x + 9 = 2x + 5</div>
+    <div class="calc-line"><span class="calc-eq">7x + 9 = 2x + 5</span><span class="calc-note">equação inicial</span></div>
+    <div class="calc-line"><span class="calc-eq">7x − 2x = 5 − 9</span><span class="calc-note">x pra esquerda, números pra direita</span></div>
+    <div class="calc-line"><span class="calc-eq">5x = −4</span><span class="calc-note">juntou os termos</span></div>
+    <div class="calc-line"><span class="calc-eq">x = −4 ÷ 5</span><span class="calc-note">o 5 passa dividindo</span></div>
+    <div class="calc-final">🎉 x = −4/5</div>
+  </div>
+
+  <div class="worked" style="border-color:var(--teal);background:linear-gradient(135deg,var(--teal-l),#fff)">
+    <div class="wtitle" style="color:#0E8C86">⚡ Exemplo 2: Resolva 3x − 12 = 5x − 20</div>
+    <div class="calc-line"><span class="calc-eq">3x − 12 = 5x − 20</span><span class="calc-note" style="background:var(--teal-l);color:#0E8C86">equação inicial</span></div>
+    <div class="calc-line"><span class="calc-eq">3x − 5x = −20 + 12</span><span class="calc-note" style="background:var(--teal-l);color:#0E8C86">reorganiza os termos</span></div>
+    <div class="calc-line"><span class="calc-eq">−2x = −8</span><span class="calc-note" style="background:var(--teal-l);color:#0E8C86">junta tudo</span></div>
+    <div class="calc-line"><span class="calc-eq">x = −8 ÷ (−2)</span><span class="calc-note" style="background:var(--teal-l);color:#0E8C86">o −2 passa dividindo</span></div>
+    <div class="calc-final" style="background:var(--lime-l);color:#4A7A1F">🎉 x = 4</div>
+  </div>
+
+  <div class="tip tip-idea">
+    <span class="i">🧲</span>
+    <span><strong>Regra do ímã:</strong> imagine que os <strong>x são atraídos para a esquerda</strong> e os <strong>números para a direita</strong>. Quando um termo "atravessa" o sinal de igual, ele <strong>troca de operação</strong> (+ vira −, × vira ÷).</span>
+  </div>
+
+  <div class="tip tip-warn">
+    <span class="i">➖</span>
+    <span><strong>Cuidado com os sinais!</strong> Ao dividir −8 por −2, o resultado é <strong>positivo</strong> (+4), porque menos com menos dá mais. Sinais iguais na divisão → resultado positivo.</span>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     QUIZ 1
+═══════════════════════════════════════════════════ -->
+<div class="quiz-wrap q1bg" id="quiz1">
+  <div class="qhead qc1">
+    <div class="qemoji">🎮</div>
+    <h2>Quiz — Parte 1</h2>
+    <p>5 equações do 1º grau para você resolver!</p>
+  </div>
+
+  <div class="pbar-out"><div class="pbar-in" id="pb1"></div></div>
+  <div class="plabel" id="pl1">Desafio 1 de 5</div>
+
+  <!-- Q1 -->
+  <div class="qcard on" id="a1">
+    <span class="qtag">Desafio 1 · Equação simples</span>
+    <div class="qeq">x + 7 = 12</div>
+    <div class="qtext">Qual é o valor de x?</div>
+    <div class="opts">
+      <button class="opt" data-c="false" onclick="resp1(this,'a1')"><span class="olt">A</span>x = 19</button>
+      <button class="opt" data-c="true"  onclick="resp1(this,'a1')"><span class="olt">B</span>x = 5</button>
+      <button class="opt" data-c="false" onclick="resp1(this,'a1')"><span class="olt">C</span>x = 7</button>
+      <button class="opt" data-c="false" onclick="resp1(this,'a1')"><span class="olt">D</span>x = 12</button>
+    </div>
+    <div class="fb" id="f1"></div>
+    <button class="nxt" id="n1" onclick="prox1(1)">Próximo →</button>
+  </div>
+
+  <!-- Q2 -->
+  <div class="qcard" id="a2">
+    <span class="qtag">Desafio 2 · Multiplicação</span>
+    <div class="qeq">3x − 5 = 10</div>
+    <div class="qtext">Descubra o valor de x (a equação do Leonardo!)</div>
+    <div class="opts">
+      <button class="opt" data-c="true"  onclick="resp1(this,'a2')"><span class="olt">A</span>x = 5</button>
+      <button class="opt" data-c="false" onclick="resp1(this,'a2')"><span class="olt">B</span>x = 15</button>
+      <button class="opt" data-c="false" onclick="resp1(this,'a2')"><span class="olt">C</span>x = 3</button>
+      <button class="opt" data-c="false" onclick="resp1(this,'a2')"><span class="olt">D</span>x = 45</button>
+    </div>
+    <div class="fb" id="f2"></div>
+    <button class="nxt" id="n2" onclick="prox1(2)">Próximo →</button>
+  </div>
+
+  <!-- Q3 -->
+  <div class="qcard" id="a3">
+    <span class="qtag">Desafio 3 · x dos dois lados</span>
+    <div class="qeq">5x − 3 = 4x + 12</div>
+    <div class="qtext">Junte os x de um lado e resolva. Quanto vale x?</div>
+    <div class="opts">
+      <button class="opt" data-c="false" onclick="resp1(this,'a3')"><span class="olt">A</span>x = 9</button>
+      <button class="opt" data-c="true"  onclick="resp1(this,'a3')"><span class="olt">B</span>x = 15</button>
+      <button class="opt" data-c="false" onclick="resp1(this,'a3')"><span class="olt">C</span>x = 12</button>
+      <button class="opt" data-c="false" onclick="resp1(this,'a3')"><span class="olt">D</span>x = 3</button>
+    </div>
+    <div class="fb" id="f3"></div>
+    <button class="nxt" id="n3" onclick="prox1(3)">Próximo →</button>
+  </div>
+
+  <!-- Q4 -->
+  <div class="qcard" id="a4">
+    <span class="qtag">Desafio 4 · Método prático</span>
+    <div class="qeq">21x − 9 = 11x + 31</div>
+    <div class="qtext">Resolva usando o método prático. Qual é o valor de x?</div>
+    <div class="opts">
+      <button class="opt" data-c="true"  onclick="resp1(this,'a4')"><span class="olt">A</span>x = 4</button>
+      <button class="opt" data-c="false" onclick="resp1(this,'a4')"><span class="olt">B</span>x = 2</button>
+      <button class="opt" data-c="false" onclick="resp1(this,'a4')"><span class="olt">C</span>x = 40</button>
+      <button class="opt" data-c="false" onclick="resp1(this,'a4')"><span class="olt">D</span>x = 22</button>
+    </div>
+    <div class="fb" id="f4"></div>
+    <button class="nxt" id="n4" onclick="prox1(4)">Próximo →</button>
+  </div>
+
+  <!-- Q5 -->
+  <div class="qcard" id="a5">
+    <span class="qtag">Desafio 5 · Problema em palavras</span>
+    <div class="qeq">O triplo de um número mais 12 é igual a 40 menos o quíntuplo desse número.</div>
+    <div class="qtext">Montando: 3x + 12 = 40 − 5x. Qual é o número?</div>
+    <div class="opts">
+      <button class="opt" data-c="false" onclick="resp1(this,'a5')"><span class="olt">A</span>x = 5</button>
+      <button class="opt" data-c="true"  onclick="resp1(this,'a5')"><span class="olt">B</span>x = 3,5</button>
+      <button class="opt" data-c="false" onclick="resp1(this,'a5')"><span class="olt">C</span>x = 7</button>
+      <button class="opt" data-c="false" onclick="resp1(this,'a5')"><span class="olt">D</span>x = 4</button>
+    </div>
+    <div class="fb" id="f5"></div>
+    <button class="nxt" id="n5" onclick="fim1()">Ver resultado 🏆</button>
+  </div>
+
+  <!-- RESULT 1 -->
+  <div class="res" id="res1">
+    <div class="re" id="re1">🏆</div>
+    <div class="rs" id="rs1">0/5</div>
+    <div class="rm" id="rm1"></div>
+    <button class="rbtn" onclick="reset1()">🔄 Tentar de novo</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PARTE 2 — EQUAÇÃO FRACIONÁRIA
+═══════════════════════════════════════════════════ -->
+<div class="part-banner pb2" id="p2">
+  <div class="pnum">PARTE 2</div>
+  <h2>🧩 Equação Fracionária com uma Incógnita</h2>
+  <p>Agora com a incógnita no denominador!</p>
+</div>
+
+<!-- ── S2A ── -->
+<div class="sec" id="s2a">
+<div class="w">
+  <div class="st"><span class="emoji">🧩</span><h3 style="color:var(--purple)">O que é uma equação fracionária?</h3></div>
+
+  <div class="def def-purple">
+    <div class="lbl">📌 Definição</div>
+    <p>Uma <strong>equação fracionária</strong> é aquela que tem <strong>pelo menos uma incógnita (x) no denominador</strong> de uma fração. Ou seja, o x aparece "embaixo" da fração!</p>
+  </div>
+
+  <div class="anatomy">
+    <div class="eq-big" style="font-size:clamp(1.6rem,5.5vw,2.6rem)">
+      <span class="frac"><span class="fnum">4</span><span class="fden" style="color:var(--purple)">x − 4</span></span>
+      <span>+ 5 =</span>
+      <span class="frac"><span class="fnum">x</span><span class="fden" style="color:var(--purple)">x − 4</span></span>
+    </div>
+    <p style="margin-top:16px;font-weight:700;color:#777;font-size:.9rem">Repare: o <strong style="color:var(--purple)">x − 4</strong> está no <strong>denominador</strong> (embaixo). Isso é uma equação fracionária!</p>
+  </div>
+
+  <div class="tip tip-warn">
+    <span class="i">🚫</span>
+    <span><strong>Regra de ouro:</strong> não existe divisão por zero! Por isso, o denominador <strong>nunca pode ser igual a zero</strong>. Isso vai ser muito importante no final.</span>
+  </div>
+
+  <h4 style="font-family:'Fredoka';font-size:1.4rem;margin:28px 0 14px;color:var(--dark)">📋 O passo a passo completo</h4>
+  <p style="font-weight:600;margin-bottom:16px">Vamos resolver a equação abaixo com todo cuidado:</p>
+  <div style="text-align:center;font-family:'Fredoka';font-size:clamp(1.5rem,5vw,2rem);font-weight:600;background:var(--purple-l);border-radius:16px;padding:18px;margin-bottom:18px;color:var(--purple)">
+    <span class="frac"><span class="fnum">4</span><span class="fden">x − 4</span></span>
+    <span style="color:var(--dark)">+ 5 =</span>
+    <span class="frac"><span class="fnum">x</span><span class="fden">x − 4</span></span>
+  </div>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num" style="background:var(--purple)">1</div>
+      <div class="flow-body">
+        <h4>🔍 Encontre o MMC dos denominadores</h4>
+        <p>Os denominadores aqui são (x−4) e (x−4) — são iguais! Então o MMC é simplesmente <strong>(x−4)</strong>. O MMC é o "denominador comum" que vai nos ajudar a eliminar as frações.</p>
+      </div>
+      <div class="flow-connector"></div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-num" style="background:var(--blue)">2</div>
+      <div class="flow-body">
+        <h4>✖️ Multiplique os dois lados pelo MMC</h4>
+        <p>Multiplicamos <strong>cada termo</strong> da equação por (x−4). Escrevemos assim:</p>
+        <span class="flow-eq" style="display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px">(x−4) · [ <span class="frac"><span class="fnum">4</span><span class="fden">x−4</span></span> + 5 ] = [ <span class="frac"><span class="fnum">x</span><span class="fden">x−4</span></span> ] · (x−4)</span>
+        <p style="margin-top:10px;color:var(--blue);font-weight:800">👇 Mas como fazer essa multiplicação na prática? Veja abaixo, termo por termo!</p>
+      </div>
+      <div class="flow-connector"></div>
+    </div>
+
+    <!-- ══ DETALHAMENTO DA MULTIPLICAÇÃO ══ -->
+    <div class="distrib">
+      <div class="dtitle">🔬 Zoom na multiplicação — termo por termo</div>
+      <div class="dsub">A regra é: o MMC (x−4) multiplica CADA pedaço, um de cada vez. Vamos lá!</div>
+
+      <div class="dstep">
+        <div class="dbadge">A</div>
+        <div class="dbody">
+          <div class="dlabel">🍕 Primeiro termo: (x−4) × <span class="frac" style="font-size:.9em"><span class="fnum">4</span><span class="fden">x−4</span></span></div>
+          <p style="font-size:.88rem;font-weight:600;color:#666">Quando multiplico uma fração por um número, multiplico o número por cima (no numerador). Fica (x−4)·4 em cima e (x−4) embaixo. Aí o (x−4) de cima <strong>cancela</strong> com o (x−4) de baixo!</p>
+          <div class="dmath" style="display:flex;align-items:center;flex-wrap:wrap;gap:6px">
+            <span class="hl-mmc">(x−4)</span> ·
+            <span class="frac"><span class="fnum">4</span><span class="fden">x−4</span></span>
+            =
+            <span class="frac"><span class="fnum">4 · <span class="hl-cancel">(x−4)</span></span><span class="fden"><span class="hl-cancel">x−4</span></span></span>
+            = <span class="hl-keep">4</span>
+          </div>
+          <p style="font-size:.85rem;font-weight:700;color:var(--lime);margin-top:6px">✓ Sobrou só o <strong>4</strong> (a fração sumiu!)</p>
+        </div>
+      </div>
+
+      <div class="dstep">
+        <div class="dbadge">B</div>
+        <div class="dbody">
+          <div class="dlabel">🔢 Segundo termo: (x−4) × 5</div>
+          <p style="font-size:.88rem;font-weight:600;color:#666">Aqui o 5 é um número inteiro (não tem fração). Então é só distribuir: multiplico o (x−4) pelo 5, usando a propriedade distributiva (x−4)·5 = 5·x − 5·4.</p>
+          <div class="dmath">
+            <span class="hl-mmc">(x−4)</span> · 5 &nbsp;=&nbsp; 5·x − 5·4 &nbsp;=&nbsp; <span class="hl-keep">5x − 20</span>
+          </div>
+          <p style="font-size:.85rem;font-weight:700;color:var(--lime);margin-top:6px">✓ Virou <strong>5x − 20</strong> (multipliquei o 5 por cada parte do parêntese)</p>
+        </div>
+      </div>
+
+      <div class="dstep">
+        <div class="dbadge">C</div>
+        <div class="dbody">
+          <div class="dlabel">🍕 Terceiro termo (lado direito): (x−4) × <span class="frac" style="font-size:.9em"><span class="fnum">x</span><span class="fden">x−4</span></span></div>
+          <p style="font-size:.88rem;font-weight:600;color:#666">Mesma ideia do termo A! O (x−4) de cima cancela com o (x−4) de baixo, e sobra só o x.</p>
+          <div class="dmath" style="display:flex;align-items:center;flex-wrap:wrap;gap:6px">
+            <span class="hl-mmc">(x−4)</span> ·
+            <span class="frac"><span class="fnum">x</span><span class="fden">x−4</span></span>
+            =
+            <span class="frac"><span class="fnum">x · <span class="hl-cancel">(x−4)</span></span><span class="fden"><span class="hl-cancel">x−4</span></span></span>
+            = <span class="hl-keep">x</span>
+          </div>
+          <p style="font-size:.85rem;font-weight:700;color:var(--lime);margin-top:6px">✓ Sobrou só o <strong>x</strong></p>
+        </div>
+      </div>
+
+      <div class="dstep">
+        <div class="dbadge" style="background:var(--lime-l);color:#4A7A1F">=</div>
+        <div class="dbody">
+          <div class="dlabel">🎯 Juntando tudo (A + B = C)</div>
+          <p style="font-size:.88rem;font-weight:600;color:#666">Agora é só encaixar os pedaços que sobraram de cada termo:</p>
+          <div class="dresult">4 + 5x − 20 = x</div>
+          <p style="font-size:.85rem;font-weight:700;color:var(--dark);margin-top:8px;text-align:center">🎉 As frações desapareceram! Agora virou uma equação normal do 1º grau.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip tip-idea" style="margin-bottom:12px">
+      <span class="i">🧠</span>
+      <span><strong>A regra do cancelamento:</strong> sempre que o MMC for <strong>igual ao denominador</strong> de uma fração, eles se cancelam e sobra só o numerador. Quando o termo <strong>não tem fração</strong> (como o 5), usamos a distributiva: multiplica por cada parte do parêntese.</span>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-num" style="background:var(--teal)">3</div>
+      <div class="flow-body">
+        <h4>🧹 Resultado: os denominadores foram eliminados!</h4>
+        <p>Depois da multiplicação termo por termo, a fração sumiu e sobrou uma equação simples:</p>
+        <span class="flow-eq">4 + 5x − 20 = x</span>
+      </div>
+      <div class="flow-connector"></div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-num" style="background:var(--lime)">4</div>
+      <div class="flow-body">
+        <h4>🔢 Resolva como equação do 1º grau</h4>
+        <p>Agora é igual à Parte 1! Junte os x de um lado e os números do outro:</p>
+        <span class="flow-eq">5x − x = 20 − 4 &nbsp;→&nbsp; 4x = 16 &nbsp;→&nbsp; x = 16 ÷ 4</span>
+      </div>
+      <div class="flow-connector"></div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-num" style="background:var(--orange)">5</div>
+      <div class="flow-body">
+        <h4>⚠️ VERIFIQUE se o valor não zera o denominador!</h4>
+        <p>Esse passo é <strong>obrigatório</strong> nas fracionárias! Achamos x = 4. Mas o denominador é (x−4). Se x = 4, então 4 − 4 = <strong>0</strong>. E não pode dividir por zero!</p>
+        <span class="flow-eq" style="background:var(--pink-l);color:var(--pink)">x = 4 zera o denominador ❌</span>
+      </div>
+      <div class="flow-connector"></div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-num" style="background:var(--pink)">✗</div>
+      <div class="flow-body">
+        <h4>Conclusão desta equação</h4>
+        <p>Como x = 4 faria o denominador virar zero, esse valor <strong>não serve</strong>. Portanto, esta equação <strong>não tem solução</strong>!</p>
+        <span class="flow-eq" style="background:var(--pink-l);color:var(--pink)">Sem solução (x=4 é proibido)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip tip-heart">
+    <span class="i">💡</span>
+    <span><strong>Por que verificar?</strong> Nas equações fracionárias, às vezes encontramos um valor de x que "resolve" a conta, mas que é <strong>proibido</strong> porque zera o denominador. Esse valor chama-se <strong>valor não permitido</strong>. Sempre confira no final!</span>
+  </div>
+
+  <h4 style="font-family:'Fredoka';font-size:1.4rem;margin:32px 0 14px;color:var(--dark)">✅ Um exemplo que DÁ certo</h4>
+  <p style="font-weight:600;margin-bottom:14px">Vamos resolver a equação abaixo (com x ≠ 0 e x ≠ −1):</p>
+  <div style="text-align:center;font-family:'Fredoka';font-size:clamp(1.5rem,5vw,2rem);font-weight:600;background:var(--teal-l);border-radius:16px;padding:18px;margin-bottom:18px;color:#0E8C86">
+    <span class="frac"><span class="fnum">170</span><span class="fden">x</span></span>
+    <span style="color:var(--dark)">=</span>
+    <span class="frac"><span class="fnum">255</span><span class="fden">x + 1</span></span>
+  </div>
+
+  <div class="worked" style="border-color:var(--teal);background:linear-gradient(135deg,var(--teal-l),#fff)">
+    <div class="wtitle" style="color:#0E8C86">🧩 Resolvendo com multiplicação cruzada</div>
+    <div class="calc-line"><span class="calc-eq" style="display:flex;align-items:center;gap:6px"><span class="frac"><span class="fnum">170</span><span class="fden">x</span></span> = <span class="frac"><span class="fnum">255</span><span class="fden">x+1</span></span></span><span class="calc-note" style="background:var(--teal-l);color:#0E8C86">equação inicial</span></div>
+    <div class="calc-line"><span class="calc-eq">170·(x+1) = 255·x</span><span class="calc-note" style="background:var(--teal-l);color:#0E8C86">multiplica em cruz ✖️</span></div>
+    <div class="calc-line"><span class="calc-eq">170x + 170 = 255x</span><span class="calc-note" style="background:var(--teal-l);color:#0E8C86">distribui o 170</span></div>
+    <div class="calc-line"><span class="calc-eq">170 = 255x − 170x</span><span class="calc-note" style="background:var(--teal-l);color:#0E8C86">junta os x</span></div>
+    <div class="calc-line"><span class="calc-eq">170 = 85x → x = 170 ÷ 85</span><span class="calc-note" style="background:var(--teal-l);color:#0E8C86">o 85 passa dividindo</span></div>
+    <div class="calc-final" style="background:var(--lime-l);color:#4A7A1F">🎉 x = 2 &nbsp;(e 2 não zera nenhum denominador ✓)</div>
+  </div>
+
+  <div class="tip tip-idea">
+    <span class="i">✖️</span>
+    <span><strong>Multiplicação cruzada:</strong> quando a equação é do tipo <strong>uma fração = outra fração</strong>, você pode multiplicar "em cruz": o de cima de uma vezes o de baixo da outra. É um atalho super útil quando há só uma fração de cada lado!</span>
+  </div>
+
+  <h4 style="font-family:'Fredoka';font-size:1.4rem;margin:32px 0 14px;color:var(--dark)">🎓 E quando os denominadores são DIFERENTES?</h4>
+  <p style="font-weight:600;margin-bottom:14px">Nos exemplos acima os denominadores eram parecidos. Mas e numa equação como a de baixo? Aqui os denominadores são <strong>x, (x−2) e x</strong>. Veja como fazer:</p>
+  <div style="text-align:center;font-family:'Fredoka';font-size:clamp(1.5rem,5vw,2rem);font-weight:600;background:var(--orange-l);border-radius:16px;padding:18px;margin-bottom:18px;color:var(--orange)">
+    <span class="frac"><span class="fnum">16</span><span class="fden">x</span></span>
+    <span style="color:var(--dark)">−</span>
+    <span class="frac"><span class="fnum">5</span><span class="fden">x − 2</span></span>
+    <span style="color:var(--dark)">=</span>
+    <span class="frac"><span class="fnum">9</span><span class="fden">x</span></span>
+  </div>
+
+  <div class="distrib" style="border-color:var(--orange);box-shadow:0 6px 22px rgba(255,138,61,.15)">
+    <div class="dtitle" style="color:var(--orange)">🔬 Passo a passo com denominadores diferentes</div>
+    <div class="dsub">O segredo é multiplicar tudo pelo MMC de TODOS os denominadores.</div>
+
+    <div class="dstep">
+      <div class="dbadge" style="background:var(--orange-l);color:var(--orange)">1</div>
+      <div class="dbody">
+        <div class="dlabel">Ache o MMC de todos os denominadores</div>
+        <p style="font-size:.88rem;font-weight:600;color:#666">Os denominadores são x, (x−2) e x. O MMC deles é <strong>x·(x−2)</strong> — o produto dos denominadores diferentes.</p>
+        <div class="dmath">MMC = <span class="hl-mmc">x · (x−2)</span></div>
+      </div>
+    </div>
+
+    <div class="dstep">
+      <div class="dbadge" style="background:var(--orange-l);color:var(--orange)">2</div>
+      <div class="dbody">
+        <div class="dlabel">Multiplique cada termo pelo MMC e cancele</div>
+        <p style="font-size:.88rem;font-weight:600;color:#666">Termo <span class="frac" style="font-size:.85em"><span class="fnum">16</span><span class="fden">x</span></span>: o x cancela, sobra 16·(x−2). &nbsp; Termo <span class="frac" style="font-size:.85em"><span class="fnum">5</span><span class="fden">x−2</span></span>: o (x−2) cancela, sobra 5·x. &nbsp; Termo <span class="frac" style="font-size:.85em"><span class="fnum">9</span><span class="fden">x</span></span>: o x cancela, sobra 9·(x−2).</p>
+        <div class="dmath">16·(x−2) − 5·x = 9·(x−2)</div>
+      </div>
+    </div>
+
+    <div class="dstep">
+      <div class="dbadge" style="background:var(--orange-l);color:var(--orange)">3</div>
+      <div class="dbody">
+        <div class="dlabel">Distribua os parênteses</div>
+        <div class="dmath">16x − 32 − 5x = 9x − 18</div>
+      </div>
+    </div>
+
+    <div class="dstep">
+      <div class="dbadge" style="background:var(--lime-l);color:#4A7A1F">✓</div>
+      <div class="dbody">
+        <div class="dlabel">Resolva como 1º grau e verifique</div>
+        <div class="dmath">11x − 9x = −18 + 32 → 2x = 14 → x = 7</div>
+        <div class="dresult">🎉 x = 7 (e 7 não zera x nem x−2, então é válido!)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip tip-star">
+    <span class="i">🔑</span>
+    <span><strong>A regra que funciona SEMPRE:</strong> para qualquer equação fracionária, o MMC de denominadores diferentes é o <strong>produto deles</strong> (ex: x e x−2 → MMC = x·(x−2)). Ao multiplicar cada termo pelo MMC, um dos fatores sempre cancela o denominador daquele termo, e sobra o resto multiplicando o numerador.</span>
+  </div>
+
+  <div class="tip tip-star">
+    <span class="i">🎯</span>
+    <span><strong>Resumo da Parte 2:</strong> (1) ache o MMC, (2) multiplique tudo pelo MMC, (3) elimine os denominadores, (4) resolva como 1º grau, (5) <strong>sempre verifique</strong> se o valor não zera o denominador!</span>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     QUIZ 2
+═══════════════════════════════════════════════════ -->
+<div class="quiz-wrap q2bg" id="quiz2">
+  <div class="qhead qc2">
+    <div class="qemoji">🎮</div>
+    <h2>Quiz — Parte 2</h2>
+    <p>5 equações fracionárias para dominar!</p>
+  </div>
+
+  <div class="pbar-out"><div class="pbar-in" id="pb2"></div></div>
+  <div class="plabel" id="pl2">Desafio 1 de 5</div>
+
+  <!-- Q1 -->
+  <div class="qcard on" id="b1">
+    <span class="qtag">Desafio 1 · Fração simples</span>
+    <div class="qeq"><span class="frac"><span class="fnum">12</span><span class="fden">x</span></span> = 3</div>
+    <div class="qtext">Qual valor de x satisfaz a equação? (x ≠ 0)</div>
+    <div class="opts">
+      <button class="opt" data-c="false" onclick="resp2(this,'b1')"><span class="olt">A</span>x = 36</button>
+      <button class="opt" data-c="true"  onclick="resp2(this,'b1')"><span class="olt">B</span>x = 4</button>
+      <button class="opt" data-c="false" onclick="resp2(this,'b1')"><span class="olt">C</span>x = 9</button>
+      <button class="opt" data-c="false" onclick="resp2(this,'b1')"><span class="olt">D</span>x = 15</button>
+    </div>
+    <div class="fb" id="g1"></div>
+    <button class="nxt" id="m1" onclick="prox2(1)">Próximo →</button>
+  </div>
+
+  <!-- Q2 -->
+  <div class="qcard" id="b2">
+    <span class="qtag">Desafio 2 · Multiplicação cruzada</span>
+    <div class="qeq"><span class="frac"><span class="fnum">170</span><span class="fden">x</span></span> = <span class="frac"><span class="fnum">255</span><span class="fden">x + 1</span></span></div>
+    <div class="qtext">Use a multiplicação cruzada. Quanto vale x? (x ≠ 0 e x ≠ −1)</div>
+    <div class="opts">
+      <button class="opt" data-c="true"  onclick="resp2(this,'b2')"><span class="olt">A</span>x = 2</button>
+      <button class="opt" data-c="false" onclick="resp2(this,'b2')"><span class="olt">B</span>x = 3</button>
+      <button class="opt" data-c="false" onclick="resp2(this,'b2')"><span class="olt">C</span>x = 5</button>
+      <button class="opt" data-c="false" onclick="resp2(this,'b2')"><span class="olt">D</span>x = 1</button>
+    </div>
+    <div class="fb" id="g2"></div>
+    <button class="nxt" id="m2" onclick="prox2(2)">Próximo →</button>
+  </div>
+
+  <!-- Q3 -->
+  <div class="qcard" id="b3">
+    <span class="qtag">Desafio 3 · Valor proibido</span>
+    <div class="qeq"><span class="frac"><span class="fnum">4</span><span class="fden">x − 4</span></span> + 5 = <span class="frac"><span class="fnum">x</span><span class="fden">x − 4</span></span></div>
+    <div class="qtext">Ao resolver, você encontra x = 4. Qual é a conclusão correta?</div>
+    <div class="opts">
+      <button class="opt" data-c="false" onclick="resp2(this,'b3')"><span class="olt">A</span>x = 4 é a solução</button>
+      <button class="opt" data-c="true"  onclick="resp2(this,'b3')"><span class="olt">B</span>Não tem solução (x=4 zera o denominador)</button>
+      <button class="opt" data-c="false" onclick="resp2(this,'b3')"><span class="olt">C</span>x = 0 é a solução</button>
+      <button class="opt" data-c="false" onclick="resp2(this,'b3')"><span class="olt">D</span>x = 8 é a solução</button>
+    </div>
+    <div class="fb" id="g3"></div>
+    <button class="nxt" id="m3" onclick="prox2(3)">Próximo →</button>
+  </div>
+
+  <!-- Q4 -->
+  <div class="qcard" id="b4">
+    <span class="qtag">Desafio 4 · Soma de frações</span>
+    <div class="qeq"><span class="frac"><span class="fnum">3</span><span class="fden">x</span></span> + <span class="frac"><span class="fnum">6</span><span class="fden">3x</span></span> = <span class="frac"><span class="fnum">1</span><span class="fden">5</span></span></div>
+    <div class="qtext">Resolva a equação fracionária. Qual é o valor de x? (x ≠ 0)</div>
+    <div class="opts">
+      <button class="opt" data-c="true"  onclick="resp2(this,'b4')"><span class="olt">A</span>x = 25</button>
+      <button class="opt" data-c="false" onclick="resp2(this,'b4')"><span class="olt">B</span>x = 15</button>
+      <button class="opt" data-c="false" onclick="resp2(this,'b4')"><span class="olt">C</span>x = 5</button>
+      <button class="opt" data-c="false" onclick="resp2(this,'b4')"><span class="olt">D</span>x = 45</button>
+    </div>
+    <div class="fb" id="g4"></div>
+    <button class="nxt" id="m4" onclick="prox2(4)">Próximo →</button>
+  </div>
+
+  <!-- Q5 -->
+  <div class="qcard" id="b5">
+    <span class="qtag">Desafio 5 · Verificação final</span>
+    <div class="qeq"><span class="frac"><span class="fnum">10</span><span class="fden">x − 3</span></span> = 5</div>
+    <div class="qtext">Encontre x e verifique se ele é permitido. (x ≠ 3)</div>
+    <div class="opts">
+      <button class="opt" data-c="true"  onclick="resp2(this,'b5')"><span class="olt">A</span>x = 5</button>
+      <button class="opt" data-c="false" onclick="resp2(this,'b5')"><span class="olt">B</span>x = 3</button>
+      <button class="opt" data-c="false" onclick="resp2(this,'b5')"><span class="olt">C</span>x = 2</button>
+      <button class="opt" data-c="false" onclick="resp2(this,'b5')"><span class="olt">D</span>x = 13</button>
+    </div>
+    <div class="fb" id="g5"></div>
+    <button class="nxt" id="m5" onclick="fim2()">Ver resultado 🏆</button>
+  </div>
+
+  <!-- RESULT 2 -->
+  <div class="res" id="res2">
+    <div class="re" id="re2">🏆</div>
+    <div class="rs" id="rs2">0/5</div>
+    <div class="rm" id="rm2"></div>
+    <button class="rbtn" onclick="reset2()">🔄 Tentar de novo</button>
+  </div>
+</div>
+
+<footer>✏️ Equações do 1º Grau · Material de Estudo — 8º Ano de Matemática</footer>
+
+<script>
+/* ══════════ QUIZ 1 ══════════ */
+var sc1=0,cu1=1;
+var fbk1={
+  a1:{ok:"Perfeito! O +7 passa subtraindo: x = 12 − 7 = 5. ✓",
+      no:"Quase! O +7 estava somando, então passa SUBTRAINDO: x = 12 − 7 = 5."},
+  a2:{ok:"Isso! 3x = 10 + 5 = 15, depois x = 15 ÷ 3 = 5. Esse é o número do Leonardo! ✓",
+      no:"Cuidado! Primeiro: 3x = 10 + 5 = 15. Depois o 3 passa dividindo: x = 15 ÷ 3 = 5."},
+  a3:{ok:"Muito bem! 5x − 4x = 12 + 3 → x = 15. ✓",
+      no:"Reveja: junte os x (5x − 4x = x) e os números (12 + 3 = 15). Então x = 15."},
+  a4:{ok:"Excelente! 21x − 11x = 31 + 9 → 10x = 40 → x = 4. ✓",
+      no:"Passo a passo: 21x − 11x = 31 + 9 → 10x = 40 → x = 40 ÷ 10 = 4."},
+  a5:{ok:"Ótimo! 3x + 5x = 40 − 12 → 8x = 28 → x = 3,5. ✓",
+      no:"Veja: 3x + 5x = 40 − 12 → 8x = 28 → x = 28 ÷ 8 = 3,5."}
+};
+function resp1(btn,id){
+  var c=document.getElementById(id),bs=c.querySelectorAll('.opt');
+  bs.forEach(function(b){b.disabled=true});
+  var n=id.replace('a',''),fb=document.getElementById('f'+n),nx=document.getElementById('n'+n);
+  if(btn.getAttribute('data-c')==='true'){btn.classList.add('cor');sc1++;fb.innerHTML='🎉 '+fbk1[id].ok;fb.className='fb on ok';}
+  else{btn.classList.add('err');bs.forEach(function(b){if(b.getAttribute('data-c')==='true')b.classList.add('cor')});fb.innerHTML='💡 '+fbk1[id].no;fb.className='fb on no';}
+  nx.classList.add('on');upd1();
+}
+function prox1(n){document.getElementById('a'+n).classList.remove('on');var p=n+1;if(p<=5){document.getElementById('a'+p).classList.add('on');cu1=p;document.getElementById('pl1').textContent='Desafio '+p+' de 5';}upd1();}
+function upd1(){document.getElementById('pb1').style.width=((cu1-1)/5*100)+'%';}
+function fim1(){
+  document.getElementById('a5').classList.remove('on');
+  var r=document.getElementById('res1');r.classList.add('on');
+  var e,m,p=sc1/5;
+  if(p===1){e='🏆';m='Incrível! Você acertou tudo! Domina as equações do 1º grau!';}
+  else if(p>=.8){e='⭐';m='Muito bom! Você está quase perfeito(a)!';}
+  else if(p>=.6){e='👍';m='Bom trabalho! Revise os erros e siga em frente!';}
+  else if(p>=.4){e='📚';m='Continue praticando! Releia o método da balança.';}
+  else{e='💪';m='Não desista! Volte à explicação e tente de novo!';}
+  document.getElementById('re1').textContent=e;
+  document.getElementById('rs1').textContent=sc1+'/5';
+  document.getElementById('rm1').textContent=m;
+  document.getElementById('pb1').style.width='100%';
+  document.getElementById('pl1').textContent='Quiz 1 concluído!';
+  r.scrollIntoView({behavior:'smooth'});
+}
+function reset1(){sc1=0;cu1=1;document.getElementById('res1').classList.remove('on');
+  for(var i=1;i<=5;i++){var c=document.getElementById('a'+i);c.classList.remove('on');
+    c.querySelectorAll('.opt').forEach(function(b){b.disabled=false;b.classList.remove('cor','err')});
+    document.getElementById('f'+i).className='fb';document.getElementById('n'+i).classList.remove('on');}
+  document.getElementById('a1').classList.add('on');document.getElementById('pb1').style.width='0%';
+  document.getElementById('pl1').textContent='Desafio 1 de 5';
+  document.getElementById('quiz1').scrollIntoView({behavior:'smooth'});}
+
+/* ══════════ QUIZ 2 ══════════ */
+var sc2=0,cu2=1;
+var fbk2={
+  b1:{ok:"Perfeito! <span class='frac'><span class='fnum'>12</span><span class='fden'>x</span></span> = 3 significa 12 ÷ x = 3, então x = 12 ÷ 3 = 4. ✓",
+      no:"Veja: se 12 dividido por x dá 3, então x = 12 ÷ 3 = 4. (Confira: 12 ÷ 4 = 3 ✓)"},
+  b2:{ok:"Excelente! Cruz: 170·(x+1) = 255·x → 170x+170 = 255x → 170 = 85x → x = 2. ✓",
+      no:"Multiplicação cruzada: 170·(x+1)=255·x → 170x+170=255x → 170=85x → x=2."},
+  b3:{ok:"Isso mesmo! x = 4 zera o denominador (4−4=0). Não pode dividir por zero, então NÃO tem solução! ✓",
+      no:"Atenção! x = 4 faz o denominador (x−4) virar 0. Como não existe divisão por zero, a equação NÃO tem solução."},
+  b4:{ok:"Muito bem! <span class='frac'><span class='fnum'>6</span><span class='fden'>3x</span></span> simplifica para <span class='frac'><span class='fnum'>2</span><span class='fden'>x</span></span>. Então <span class='frac'><span class='fnum'>3</span><span class='fden'>x</span></span> + <span class='frac'><span class='fnum'>2</span><span class='fden'>x</span></span> = <span class='frac'><span class='fnum'>5</span><span class='fden'>x</span></span> = <span class='frac'><span class='fnum'>1</span><span class='fden'>5</span></span> → x = 25. ✓",
+      no:"Dica: <span class='frac'><span class='fnum'>6</span><span class='fden'>3x</span></span> simplifica para <span class='frac'><span class='fnum'>2</span><span class='fden'>x</span></span>. Então <span class='frac'><span class='fnum'>3</span><span class='fden'>x</span></span> + <span class='frac'><span class='fnum'>2</span><span class='fden'>x</span></span> = <span class='frac'><span class='fnum'>5</span><span class='fden'>x</span></span> = <span class='frac'><span class='fnum'>1</span><span class='fden'>5</span></span> → x = 25."},
+  b5:{ok:"Ótimo! 10 = 5·(x−3) → 10 = 5x−15 → 5x = 25 → x = 5. E 5≠3, é permitido! ✓",
+      no:"Resolva: 10 = 5·(x−3) → 10 = 5x−15 → 5x = 25 → x = 5. E como 5 ≠ 3, é válido!"}
+};
+function resp2(btn,id){
+  var c=document.getElementById(id),bs=c.querySelectorAll('.opt');
+  bs.forEach(function(b){b.disabled=true});
+  var n=id.replace('b',''),fb=document.getElementById('g'+n),nx=document.getElementById('m'+n);
+  if(btn.getAttribute('data-c')==='true'){btn.classList.add('cor');sc2++;fb.innerHTML='🎉 '+fbk2[id].ok;fb.className='fb on ok';}
+  else{btn.classList.add('err');bs.forEach(function(b){if(b.getAttribute('data-c')==='true')b.classList.add('cor')});fb.innerHTML='💡 '+fbk2[id].no;fb.className='fb on no';}
+  nx.classList.add('on');upd2();
+}
+function prox2(n){document.getElementById('b'+n).classList.remove('on');var p=n+1;if(p<=5){document.getElementById('b'+p).classList.add('on');cu2=p;document.getElementById('pl2').textContent='Desafio '+p+' de 5';}upd2();}
+function upd2(){document.getElementById('pb2').style.width=((cu2-1)/5*100)+'%';}
+function fim2(){
+  document.getElementById('b5').classList.remove('on');
+  var r=document.getElementById('res2');r.classList.add('on');
+  var e,m,p=sc2/5;
+  if(p===1){e='🏆';m='Fantástico! Você dominou as equações fracionárias!';}
+  else if(p>=.8){e='⭐';m='Excelente! Você entendeu muito bem o conteúdo!';}
+  else if(p>=.6){e='👍';m='Bom trabalho! Revise os passos e continue!';}
+  else if(p>=.4){e='📚';m='Continue estudando! Lembre de verificar o denominador.';}
+  else{e='💪';m='Não desanime! Releia o passo a passo com calma.';}
+  document.getElementById('re2').textContent=e;
+  document.getElementById('rs2').textContent=sc2+'/5';
+  document.getElementById('rm2').textContent=m;
+  document.getElementById('pb2').style.width='100%';
+  document.getElementById('pl2').textContent='Quiz 2 concluído!';
+  r.scrollIntoView({behavior:'smooth'});
+}
+function reset2(){sc2=0;cu2=1;document.getElementById('res2').classList.remove('on');
+  for(var i=1;i<=5;i++){var c=document.getElementById('b'+i);c.classList.remove('on');
+    c.querySelectorAll('.opt').forEach(function(b){b.disabled=false;b.classList.remove('cor','err')});
+    document.getElementById('g'+i).className='fb';document.getElementById('m'+i).classList.remove('on');}
+  document.getElementById('b1').classList.add('on');document.getElementById('pb2').style.width='0%';
+  document.getElementById('pl2').textContent='Desafio 1 de 5';
+  document.getElementById('quiz2').scrollIntoView({behavior:'smooth'});}
+
+/* ══════════ NAV ══════════ */
+function goto(id,el){var t=document.getElementById(id);if(t)t.scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('.np').forEach(function(b){b.classList.remove('on')});if(el)el.classList.add('on');}
+</script>
+</body>
+</html>
